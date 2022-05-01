@@ -25,3 +25,17 @@ This will start the server and you can then go to localhost:3001 to view the web
 ## Usage
 
 This application will allow users to sign up if they are not a member. Once logged in, they can view their dashboard of posts to view, add, edit, or delete blog posts, as well as comment on others.
+
+View on Heroku: https://norklas-tech-blog.herokuapp.com/
+
+![Website screenshot](./public/images/screenshot.jpg)
+
+## Credits
+
+Sequelize documentation: https://sequelize.org/docs/v6/getting-started/
+
+express-session documentation: https://www.npmjs.com/package/express-session
+
+express-handlebars documentation: https://www.npmjs.com/package/express-handlebars
+
+bcrypt documentation: https://www.npmjs.com/package/bcrypt
