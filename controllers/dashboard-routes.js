@@ -29,7 +29,7 @@ router.get("/", withAuth, (req, res) => {
     .then((dbPostData) => {
       // serialize data before passing to template
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      res.json(posts);
+      res.render("dashboard", { posts, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
@@ -61,7 +61,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
   })
     .then((dbPostData) => {
       const post = dbPostData.get({ plain: true });
-      res.json(post);
+      res.render("edit-posts", { post, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
