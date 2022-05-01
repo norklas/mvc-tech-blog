@@ -5,8 +5,8 @@ const bcrypt = require("bcrypt");
 // Create User Model
 class User extends Model {
   // Set up check for password
-  checkPassword(loginPassword) {
-    return bcrypt.compareSync(loginPassword, this.password);
+  checkPassword(loginPW) {
+    return bcrypt.compareSync(loginPW, this.password);
   }
 }
 
@@ -28,19 +28,25 @@ User.init(
       allowNull: false,
       unique: true,
       validate: {
-        len: [3],
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [4],
       },
     },
   },
   {
     hooks: {
-      // setup beforeCreate lifecycle 'hook' functionality
+      // set up beforeCreate lifecycle "hook" functionality
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
 
-      // setup beforeUpdate lifecycle 'hook' functionality
       async beforeUpdate(updatedUserData) {
         updatedUserData.password = await bcrypt.hash(
           updatedUserData.password,
