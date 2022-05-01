@@ -4,8 +4,6 @@ const sequelize = require("../config/connection");
 
 // rendering all posts to homepage
 router.get("/", (req, res) => {
-  console.log(req.session);
-
   Post.findAll({
     attributes: ["id", "post_text", "title", "created_at"],
     include: [
@@ -78,7 +76,8 @@ router.get("/post/:id", (req, res) => {
       // serialize the data
       const post = dbPostData.get({ plain: true });
 
-      res.json(post);
+      // pass data to template
+      res.render("single-post", { post, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);
