@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 3001;
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
+// Create session
 const sess = {
   secret: "verysecret",
   cookie: { originalMaxAge: 600000 },
@@ -29,6 +30,7 @@ const sess = {
   }),
 };
 
+// Express middleware
 app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
